@@ -14,25 +14,26 @@
 
 ;;; The Google AdWords API 
 
-(defconstant +google-adwords-ns-uri+ "https://adwords.google.com/api/adwords/v2")
+(defconstant* +google-adwords-ns-uri+ "https://adwords.google.com/api/adwords/v2")
 
 (defpackage :google
   (:nicknames "google")
-  (:export)
+  (:export "email" "password" "useragent" "token" "clientEmail"
+		   ;; info service
+		   "getUsageQuotaThisMonth"
+		   "getUsageQuotaThisMonthResponse"
+		   "getUsageQuotaThisMonthReturn"
+		   "getCampaigns"
+		   "getCampaign" "getBillingAddress"
+		   "getMethodCost" "service" "method" "date"
+		   "getMethodCostResponse" "getMethodCostReturn"
+		   "getBillingAddressResponse" "getAllAdWordsCampaigns"
+		   "dummy" "id")
   (:documentation "Package for symbols in the Google AdWords API XML Namespace"))
 
 (defparameter *google-adwords-ns* (s-xml:register-namespace +google-adwords-ns-uri+ "google" :google))
 
 ;;; Older Manual Google AdWords Calls
-
-(export 
-   '(;; headers
-     "email" "password" "useragent" "token" "clientEmail"
-     ;; info service
-     "getUsageQuotaThisMonth" "getUsageQuotaThisMonthResponse" "getUsageQuotaThisMonthReturn"
-     "getCampaigns" "getCampaign" "getBillingAddress"
-     ;; optionally add more exports, but this is not really needed for wsdl-soap-call's
-   ))
 
 (defun get-usage-quota-this-month ()
   (multiple-value-bind (result headers)

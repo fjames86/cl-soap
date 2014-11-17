@@ -15,7 +15,7 @@
 
 ;;; XML namespaces setup
 
-(defconstant +google-adwords-ns-uri+ "https://adwords.google.com/api/adwords/v2")
+(defconstant* +google-adwords-ns-uri+ "https://adwords.google.com/api/adwords/v2")
 
 (defpackage :google
   (:nicknames "google")
