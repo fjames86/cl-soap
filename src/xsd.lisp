@@ -445,7 +445,7 @@
 
 ;;; Primitive Types/Values (types are identified :keywords)
 
-(defconstant +known-primitive-type-names+
+(defconstant* +known-primitive-type-names+
   '("string" 
     "normalizedString" "token"
     "Name" "QName" "NCName" "anyURI"

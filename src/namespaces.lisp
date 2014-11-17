@@ -15,7 +15,13 @@
 
 ;;; SOAP Envelope
 
-(defconstant +soapenv-ns-uri+ "http://schemas.xmlsoap.org/soap/envelope/")
+(defmacro defconstant* (name value &optional doc)
+  "Define constants which are not EQL (such as strings etc.)."
+  `(defconstant ,name (if (boundp ',name) (symbol-value ',name) ,value)
+     ,@(when doc (list doc))))
+
+
+(defconstant* +soapenv-ns-uri+ "http://schemas.xmlsoap.org/soap/envelope/")
 
 (defpackage :soapenv
   (:nicknames "soapenv")
@@ -26,7 +32,7 @@
 
 ;;; XSD
 
-(defconstant +xsd-ns-uri+ "http://www.w3.org/1999/XMLSchema")
+(defconstant* +xsd-ns-uri+ "http://www.w3.org/1999/XMLSchema")
 
 ;; http://www.w3.org/2000/10/XMLSchema
 
@@ -41,7 +47,7 @@
 
 ;;; XSI
 
-(defconstant +xsi-ns-uri+ "http://www.w3.org/1999/XMLSchema-instance") 
+(defconstant* +xsi-ns-uri+ "http://www.w3.org/1999/XMLSchema-instance") 
 
 ;; "http://www.w3.org/2000/10/XMLSchema-instance"
 ;; "http://www.w3.org/2001/XMLSchema"
@@ -55,11 +61,11 @@
 
 ;;; SOAP Encoding
 
-(defconstant +soap-enc-ns-uri+ "http://schemas.xmlsoap.org/soap/encoding/")
+(defconstant* +soap-enc-ns-uri+ "http://schemas.xmlsoap.org/soap/encoding/")
 
 ;;; WSDL
 
-(defconstant +wsdl-ns-uri+ "http://schemas.xmlsoap.org/wsdl/")
+(defconstant* +wsdl-ns-uri+ "http://schemas.xmlsoap.org/wsdl/")
 
 (defpackage :wsdl
   (:nicknames "wsdl")
@@ -72,7 +78,7 @@
 
 ;;; WSDL Soap Binding
 
-(defconstant +wsdl-soap-ns-uri+ "http://schemas.xmlsoap.org/wsdl/soap/")
+(defconstant* +wsdl-soap-ns-uri+ "http://schemas.xmlsoap.org/wsdl/soap/")
 
 (defpackage :wsdl-soap
   (:nicknames "wsdl-soap")
